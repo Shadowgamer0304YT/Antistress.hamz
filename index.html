@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bubble Pop - A relaxing anti-stress game to calm your mind and reduce anxiety">
+    <meta name="keywords" content="anti-stress, relaxing game, bubble pop, mindfulness, calm">
+    <meta name="theme-color" content="#6366f1">
+    <title>Bubble Pop - Relaxing Anti-Stress Game</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%236366f1'/><circle cx='50' cy='50' r='35' fill='%238b5cf6' opacity='0.5'/></svg>">
+</head>
+<body>
+    <div class="stars"></div>
+    
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">🫧</span>
+                <span class="logo-text">Bubble Pop</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#game" class="nav-link">Play</a></li>
+                <li><a href="#features" class="nav-link">Features</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1 class="hero-title">Find Your Calm</h1>
+            <p class="hero-subtitle">Pop bubbles, reduce stress, and find peace in a beautiful, minimalist game designed for your well-being</p>
+            <button class="cta-button" onclick="document.getElementById('game').scrollIntoView({behavior: 'smooth'})">Play Now</button>
+        </div>
+        <div class="hero-bubbles">
+            <div class="bubble bubble-1"></div>
+            <div class="bubble bubble-2"></div>
+            <div class="bubble bubble-3"></div>
+            <div class="bubble bubble-4"></div>
+            <div class="bubble bubble-5"></div>
+        </div>
+    </section>
+
+    <!-- Game Section -->
+    <section class="game-section" id="game">
+        <div class="game-container">
+            <div class="game-header">
+                <h2>Bubble Pop Game</h2>
+                <div class="game-stats">
+                    <div class="stat">
+                        <span class="stat-label">Score</span>
+                        <span class="stat-value" id="score">0</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Level</span>
+                        <span class="stat-value" id="level">1</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Time</span>
+                        <span class="stat-value" id="timer">60s</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="game-canvas" id="gameCanvas"></div>
+            
+            <div class="game-controls">
+                <button class="btn btn-primary" id="startBtn" onclick="startGame()">Start Game</button>
+                <button class="btn btn-secondary" id="pauseBtn" onclick="togglePause()" disabled>Pause</button>
+                <button class="btn btn-secondary" id="resetBtn" onclick="resetGame()">Reset</button>
+            </div>
+            
+            <div class="game-info">
+                <p>Click or tap on bubbles to pop them. The more you pop, the higher your score!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <h2>Why You'll Love Bubble Pop</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3>Simple & Intuitive</h3>
+                <p>Easy to learn, impossible to master. Perfect for a quick break or a long relaxation session.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🧘</div>
+                <h3>Stress Relief</h3>
+                <p>Scientifically designed with calming colors and smooth animations to reduce anxiety.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3>Works Everywhere</h3>
+                <p>Play on desktop, tablet, or mobile. Fully responsive and optimized for all devices.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎨</div>
+                <h3>Beautiful Design</h3>
+                <p>Minimalist aesthetic with smooth animations and pleasant visual effects.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>No Ads</h3>
+                <p>Pure, uninterrupted gameplay. No popups, no distractions, just relaxation.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🏆</div>
+                <h3>Track Progress</h3>
+                <p>Compete with yourself and beat your personal best. Watch your scores improve.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-content">
+            <h2>About Bubble Pop</h2>
+            <p>Bubble Pop is a mindfulness-focused anti-stress game created to help you find moments of calm in your busy day. In a world full of overwhelming content and constant notifications, we believe in the power of simple, beautiful experiences.</p>
+            <p>This game is designed by someone who understands the importance of mental health and the need for digital tools that actually help rather than harm our well-being.</p>
+            <div class="about-stats">
+                <div class="about-stat">
+                    <h3>100%</h3>
+                    <p>Ad-Free</p>
+                </div>
+                <div class="about-stat">
+                    <h3>24/7</h3>
+                    <p>Available</p>
+                </div>
+                <div class="about-stat">
+                    <h3>All</h3>
+                    <p>Devices</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 Bubble Pop. Made with 💜 for your peace of mind.</p>
+            <div class="footer-links">
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/game.js"></script>
+</body>
+</html>
