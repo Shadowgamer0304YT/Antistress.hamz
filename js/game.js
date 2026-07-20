@@ -14,6 +14,10 @@ const startBtn = document.getElementById('startBtn');
 const pauseBtn = document.getElementById('pauseBtn');
 const resetBtn = document.getElementById('resetBtn');
 
+// Sound effect for bubble pop
+const popSound = new Audio('https://cdn.pixabay.com/download/audio/2022/01/07/audio_5a59b8db82-66a2d6d0?filename=film-special-effects-bubble-pop-06-351337.mp3');
+popSound.volume = 0.5; // Set volume to 50%
+
 // Bubble class
 class Bubble {
     constructor(x, y, size, index) {
@@ -67,6 +71,14 @@ class Bubble {
         this.popped = true;
         score += 10 * level; // Award points only for user-clicked bubbles
         scoreDisplay.textContent = score;
+
+        // Play pop sound
+        try {
+            popSound.currentTime = 0;
+            popSound.play().catch(err => console.log('Sound play failed:', err));
+        } catch (e) {
+            console.log('Error playing sound:', e);
+        }
 
         // Pop animation
         this.element.classList.add('bubble-pop');
