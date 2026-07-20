@@ -325,7 +325,7 @@ body {
     border-radius: 16px;
     border: 2px solid rgba(99, 102, 241, 0.2);
     position: relative;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .game-controls {
