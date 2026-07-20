@@ -21,6 +21,7 @@ class Bubble {
         this.y = y;
         this.size = size;
         this.index = index;
+        this.popped = false;
         this.element = document.createElement('div');
         this.element.className = 'game-bubble';
         this.element.style.left = x + 'px';
@@ -36,24 +37,25 @@ class Bubble {
     }
 
     animate() {
-        const duration = 2 + Math.random() * 2;
+        const duration = 3 + Math.random() * 2; // Longer duration to reach the top
         const startY = this.y;
-        const endY = this.y - 100;
+        const endY = -this.size; // Move all the way to top (beyond visible area)
         const startTime = Date.now();
 
         const updatePosition = () => {
+            if (!gameActive || this.popped) return;
+
             const elapsed = (Date.now() - startTime) / 1000;
             const progress = Math.min(elapsed / duration, 1);
 
             if (progress < 1) {
                 this.y = startY + (endY - startY) * progress;
                 this.element.style.top = this.y + 'px';
-                this.element.style.opacity = 1 - progress * 0.3;
+                this.element.style.opacity = 1 - progress * 0.2;
                 requestAnimationFrame(updatePosition);
             } else if (gameActive && !this.popped) {
-                // Bubble drifted off screen
-                this.element.remove();
-                bubbles = bubbles.filter(b => b !== this);
+                // Bubble reached the top without being clicked - pop automatically (no points)
+                this.autoPopAtTop();
             }
         };
 
@@ -63,7 +65,7 @@ class Bubble {
     pop() {
         if (this.popped || gamePaused || !gameActive) return;
         this.popped = true;
-        score += 10 * level;
+        score += 10 * level; // Award points only for user-clicked bubbles
         scoreDisplay.textContent = score;
 
         // Pop animation
@@ -77,6 +79,23 @@ class Bubble {
             this.element.remove();
             bubbles = bubbles.filter(b => b !== this);
         }, 500);
+
+        // Spawn new bubble
+        spawnBubble();
+    }
+
+    autoPopAtTop() {
+        // Bubble reached top without being clicked - no points awarded
+        this.popped = true;
+
+        // Small pop animation at top
+        this.element.classList.add('bubble-pop');
+        this.element.style.animation = 'bubblePop 0.3s ease-out forwards';
+
+        setTimeout(() => {
+            this.element.remove();
+            bubbles = bubbles.filter(b => b !== this);
+        }, 300);
 
         // Spawn new bubble
         spawnBubble();
